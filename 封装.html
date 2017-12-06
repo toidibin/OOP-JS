@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+
+<!-- 
+    1 构造函数模式：构造函数，其实就是一个普通函数，但是内部使用了this变量。对构造函数使用new运算符，就能生成实例，并且this变量会绑定在实例对象上。
+    2 prototype模式 每一个构造函数都有一个prototype属性，指向另一个对象。这个对象的所有属性和方法，都会被构造函数的实例继承。
+        isPrototypeOf()  用来判断，某个proptotype对象和某个实例之间的关系
+        hasOwnProperty()  每个实例对象都有一个hasOwnProperty()方法，用来判断某一个属性到底是本地属性，还是继承自prototype对象的属性
+        in运算符  用来判断，某个实例是否含有某个属性，不管是不是本地属性
+ -->
+
+
+
+<script>
+    // 1
+    function Cat(name, color) {
+        this.name = name;
+        this.color = color;
+        this.eat = function(){alert("吃老鼠");};
+    }
+
+    var cat1 = new Cat('damao','red');
+    var cat2 = new Cat('ermao','black');
+    console.log(cat1.constructor == Cat);
+    console.log(cat2.constructor == Cat);
+
+    // 内存浪费
+    console.log(cat1.eat == cat2.eat); //false
+
+    // 2
+    function Cat2(name,color){
+　　　　this.name = name;
+　　　　this.color = color;
+　　}
+　　Cat2.prototype.type = "猫科动物";
+　　Cat2.prototype.eat = function(){alert("吃老鼠")};
+    var cat1 = new Cat2('damao','red');
+    var cat2 = new Cat2('ermao','black');
+    console.log(cat1.constructor == Cat2);
+    console.log(cat2.constructor == Cat2);
+    console.log(cat1.eat == cat2.eat); //true
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</html>
